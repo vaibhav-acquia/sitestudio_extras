@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Module file for Site Studio Extras Module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_alter().
+ */
+function sitestudio_extras_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Add only to admin pages.
+  // We add to all admin pages as we do not have control over
+  // where the component form would be displayed.
+  if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
+    return;
+  }
+  // Check for user permission to Site Studio Elements - Custom elements group.
+  if (!\Drupal::currentUser()->hasPermission('access custom elements group')) {
+    return;
+  }
+
+  // Attach JS library for liraries Autocomplete feature.
+  $form['#attached']['library'][] = 'sitestudio_extras/autocomplete';
+  // Get list of libraries from active modules/themes.
+  $libraries = \Drupal::service('sitestudio_extras.get_libraries_list')->getData();
+  // Pass the libraries to the JS.
+  $form['#attached']['drupalSettings']['sitestudio_extras']['libraries'] = $libraries;
+}

@@ -1,0 +1,4 @@
+services:
+  sitestudio_extras.get_libraries_list:
+    class: Drupal\sitestudio_extras\SitestudioExtrasLibrariesManager
+    arguments: ['@module_handler', '@library.discovery', '@theme_handler']

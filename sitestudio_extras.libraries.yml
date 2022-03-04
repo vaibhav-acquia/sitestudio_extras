@@ -1,0 +1,9 @@
+autocomplete:
+  version: 1.x
+  js:
+    js/sitestudio_extras.autocomplete.js: {}
+  dependencies:
+    - core/drupalSettings
+    - core/drupal
+    - core/jquery
+    - core/jquery.ui.autocomplete
