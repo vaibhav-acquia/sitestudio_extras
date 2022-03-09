@@ -84,7 +84,6 @@ class SiteStudioAttachLibraries extends CustomElementPluginBase {
         ],
       ];
     }
-
   }
 
 }
