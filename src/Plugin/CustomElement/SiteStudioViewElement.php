@@ -35,15 +35,21 @@ class SiteStudioViewElement extends CustomElementPluginBase {
         'title' => 'View mode',
         'type' => 'select',
         'options' => $this->getViewModes(),
-        'required' => TRUE,
-        'validationMessage' => 'This field is required.',
+      ],
+      'filter' => [
+        'htmlClass' => 'col-xs-6',
+        'title' => 'Filter machine name',
+        'type' => 'textfield',
+      ],
+      'filter_value' => [
+        'htmlClass' => 'col-xs-6',
+        'title' => 'Filter value',
+        'type' => 'textfield',
       ],
       'number_per_page' => [
         'htmlClass' => 'col-xs-6',
         'title' => 'Items per page',
         'type' => 'textfield',
-        'required' => TRUE,
-        'validationMessage' => 'This field is required.',
       ],
     ];
   }
@@ -59,9 +65,18 @@ class SiteStudioViewElement extends CustomElementPluginBase {
     $view = Views::getView($view_input[0]);
     $view->setDisplay($view_input[1]);
 
+     // Set filter and filter ID.
+    if ($element_settings['filter'] && $element_settings['filter_value']  !== NULL) {
+      $filters = $view->getDisplay()->getOption('filters');
+      $filters[$element_settings['filter']]['value'] = $element_settings['filter_value'];
+      $view->display_handler->overrideOption('filters', $filters);
+    }
+
     // Get the number of pages that was passed
     // from the field and pass it as a views argument.
-    $view->setItemsPerPage($element_settings['number_per_page']);
+    if ($element_settings['number_per_page'] !== NULL) {
+      $view->setItemsPerPage($element_settings['number_per_page']);
+    }
 
     // Execute the view.
     $view->preExecute();
