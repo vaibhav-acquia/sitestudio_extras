@@ -65,8 +65,8 @@ class SiteStudioViewElement extends CustomElementPluginBase {
     $view = Views::getView($view_input[0]);
     $view->setDisplay($view_input[1]);
 
-     // Set filter and filter ID.
-    if ($element_settings['filter'] && $element_settings['filter_value']  !== NULL) {
+    // Set filter and filter ID.
+    if (!empty($element_settings['filter']) && !empty($element_settings['filter_value'])) {
       $filters = $view->getDisplay()->getOption('filters');
       $filters[$element_settings['filter']]['value'] = $element_settings['filter_value'];
       $view->display_handler->overrideOption('filters', $filters);
@@ -74,7 +74,7 @@ class SiteStudioViewElement extends CustomElementPluginBase {
 
     // Get the number of pages that was passed
     // from the field and pass it as a views argument.
-    if ($element_settings['number_per_page'] !== NULL) {
+    if (!empty($element_settings['number_per_page'])) {
       $view->setItemsPerPage($element_settings['number_per_page']);
     }
 
@@ -84,7 +84,7 @@ class SiteStudioViewElement extends CustomElementPluginBase {
     $view->render();
 
     // Set View mode.
-    if ($element_settings['view_mode'] !== NULL) {
+    if (!empty($element_settings['view_mode'])) {
       $view->rowPlugin->options['view_mode'] = $element_settings['view_mode'];
     }
 
