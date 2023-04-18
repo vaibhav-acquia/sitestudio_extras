@@ -6,4 +6,4 @@ autocomplete:
     - core/drupalSettings
     - core/drupal
     - core/jquery
-    - core/jquery.ui.autocomplete
+    - jquery_ui_autocomplete/autocomplete
