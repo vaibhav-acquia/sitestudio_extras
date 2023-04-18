@@ -1,0 +1,12 @@
+{
+  "name": "drupal/sitestudio_extras",
+  "type": "drupal-module",
+  "keywords": ["Drupal"],
+  "homepage": "https://www.drupal.org/project/sitestudio_extras",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "http://drupal.org/project/issues/sitestudio_extras",
+    "source": "http://cgit.drupalcode.org/sitestudio_extras"
+  },
+  "require": { }
+}
