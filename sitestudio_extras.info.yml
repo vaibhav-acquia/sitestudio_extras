@@ -1,4 +1,4 @@
 name: 'Site Studio Extras'
 description: 'Module provides functionality to extend site studio features.'
 type: module
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^8 || ^9 || ^10
